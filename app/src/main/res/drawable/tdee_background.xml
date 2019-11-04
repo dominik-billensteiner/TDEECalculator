@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    android:id="@+id/tdee_background"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <solid
+        android:color="@color/colorBackground"/>
+
+    <size
+        android:width="200dp"
+        android:height="200dp"/>
+</shape>

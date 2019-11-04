@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">TDEE Calculator</string>
+    <string name="weight_label">Weight</string>
+    <string name="height_label">Height</string>
+    <string name="age_label">Age</string>
+    <string name="gender_label">Gender</string>
+    <string name="b_calculate_text">Calculate BMR</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="formula_label">BMR Formula</string>
+    <string name="pal_textview_text">Phyiscal Activity Level (PAL)</string>
+    <string name="pal_edittext_text">1,4 Geringe Tätigkeit</string>
+    <string name="empty_result_field">-</string>
+    <string name="tdee">Total Daily Energy Expenditure</string>
+    <string name="body_mass_index_abr">BMI</string>
+    <string name="basal_metabolic_rate_abr">BMR</string>
+    <string name="physical_activity_level_abr">PAL</string>
+    <string name="key_formula">formula_settings</string>
+    <string name="key_pal">pal_settings</string>
+    <string name="key_measurement">measurement_settings</string>
+    <string name="key_energy_unit">energy_unit_settings</string>
+    <string name="key_gender">gender_settings</string>
+    <string name="key_age">age_settings</string>
+    <string name="key_weight">weight_settings</string>
+    <string name="key_height">height_settings</string>
+    <string name="key_">height_settings</string>
+    <string name="title_measurement">Measurement System</string>
+    <string name="title_energy_unit">Energy</string>
+    <string name="title_pal">PAL</string>
+    <string name="title_weight">Weight</string>
+    <string name="title_height">Height</string>
+    <string name="title_age">Age</string>
+    <string name="title_formula">BMR Formula</string>
+    <string name="title_activity_main_settings">Settings</string>
+    <string name="title_gender">Gender</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_send_mail">Send results via email</string>
+    <string name="msg_menu_email_warning">Whoops, you need to calculate first!</string>
+    <string name="title_intent_email">Select your preferred email app</string>
+    <string name="email_subject">Your Calculation with TDEE Calculator</string>
+    <string name="unit_kcal">kcal</string>
+    <string name="unit_mj">MJ</string>
+    <string name="unit_metric_m">m</string>
+    <string name="unit_metric_cm">cm</string>
+    <string name="unit_metric_kg">kg</string>
+    <string name="unit_imperial_lb">lb</string>
+    <string name="unit_imperial_inches">inches</string>
+    <string name="default_age">25</string>
+    <string name="default_weight">70</string>
+    <string name="default_height">170</string>
+    <string name="default_pal">1.4</string>
+    <string name="weight_max_value">699</string>
+    <string name="height_max_value">399</string>
+    <string name="age_max_value">199</string>
+    <string name="age_min_value">1</string>
+    <string name="height_min_value">1</string>
+    <string name="weight_min_value">1</string>
+
+
+    <!-- Preference Titles
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+     Messages Preferences
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    Sync Preferences
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string> -->
+</resources>

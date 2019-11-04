@@ -1,0 +1,78 @@
+<resources>
+    <!-- PAL-value preference -->
+    <string-array name="pref_measurement_entries">
+        <item>metric (kg/cm)</item>
+        <item>imperial (lb/ft/in)</item>
+    </string-array>
+
+    <string-array name="pref_measurement_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <!-- Energy unit preference -->
+    <string-array name="pref_energy_unit_entries">
+        <item>kcal</item>
+        <item>MJ</item>
+    </string-array>
+
+    <string-array name="pref_energy_unit_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <!-- BMR/REE formula preference -->
+    <string-array name="pref_formula_entries">
+        <item>Harris and Benedict (1919)</item>
+        <item>Henry (2005)</item>
+        <item>Mifflin et al. (1990)</item>
+        <item>Müller et al. (2005)</item>
+        <item>Schofield et al. (1985)</item>
+    </string-array>
+
+    <string-array name="pref_formula_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <!-- Default value preferences -->
+
+    <!-- Default gender selection-->
+    <string-array name="pref_gender_entries">
+        <item>female</item>
+        <item>male</item>
+    </string-array>
+    <string-array name="pref_gender_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <!-- PAL-value preference -->
+    <string-array name="pref_pal_entries">
+        <item>PAL 1.2 Extremely inactive</item>
+        <item>PAL 1.4 Sedentary</item>
+        <item>PAL 1.7 Moderatly active</item>
+        <item>PAL 2.0 Vigorously active</item>
+        <item>PAL 2.4 Extremely active</item>
+    </string-array>
+
+    <string-array name="pref_pal_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <!-- PAL CATEGORIES BY WHO
+    private static final String[] PAL_CATEGORIES = new String[] {
+    "PAL 1.1 - 1.4 Extremly inactive",
+    "PAL 1.4 - 1.6 Sedentary",
+    "PAL 1.7 - 1.9 Moderatly active",
+    "PAL 2.0 - 2.4 Vigorously active",
+    "PAL > 2.4 Extremly active" }; -->
+
+</resources>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="Calculation">
+        <ListPreference
+            android:id="@+id/formula_settings"
+            android:defaultValue="0"
+            android:dialogTitle="@string/title_formula"
+            android:entries="@array/pref_formula_entries"
+            android:entryValues="@array/pref_formula_values"
+            android:key="@string/key_formula"
+            android:title="@string/title_formula"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Units">
+        <ListPreference
+            android:id="@+id/energy_unit_settings"
+            android:defaultValue="0"
+            android:dialogTitle="@string/title_energy_unit"
+            android:entries="@array/pref_energy_unit_entries"
+            android:entryValues="@array/pref_energy_unit_values"
+            android:key="@string/key_energy_unit"
+            android:title="@string/title_energy_unit"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            android:id="@+id/measurement_settings"
+            android:defaultValue="0"
+            android:dialogTitle="@string/title_measurement"
+            android:entries="@array/pref_measurement_entries"
+            android:entryValues="@array/pref_measurement_values"
+            android:key="@string/key_measurement"
+            android:title="@string/title_measurement"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Default values">
+        <EditTextPreference
+            android:id="@+id/pal_settings"
+            android:defaultValue="@string/default_pal"
+            android:key="@string/key_pal"
+            android:title="@string/title_pal"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            android:id="@+id/gender_settings"
+            android:defaultValue="0"
+            android:dialogTitle="@string/title_gender"
+            android:entries="@array/pref_gender_entries"
+            android:entryValues="@array/pref_gender_values"
+            android:key="@string/key_gender"
+            android:title="@string/title_gender"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:id="@+id/age_settings"
+            android:defaultValue="3@string/default_age0"
+            android:key="@string/key_age"
+            android:title="@string/title_age"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:id="@+id/weight_settings"
+            android:defaultValue="@string/default_weight"
+            android:key="@string/key_weight"
+            android:title="@string/title_weight"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:id="@+id/height_settings"
+            android:defaultValue="@string/default_height"
+            android:key="@string/key_height"
+            android:title="@string/title_height"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

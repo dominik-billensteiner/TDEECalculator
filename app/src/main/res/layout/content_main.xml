@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".TDEECalculator"
+    tools:showIn="@layout/activity_main">
+
+    <!-- Centered input elements !-->
+    <RadioGroup
+        android:id="@+id/rg_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/np_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_female"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/gender_female" />
+
+        <RadioButton
+            android:id="@+id/rb_male"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/gender_male" />
+
+    </RadioGroup>
+
+    <!--
+    <TextView
+        android:id="@+id/tv_gender"
+        style="@style/PrimaryInfoLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gender_label"
+        app:layout_constraintEnd_toEndOf="@id/rg_gender"
+        app:layout_constraintStart_toStartOf="@id/rg_gender"
+        app:layout_constraintTop_toBottomOf="@id/rg_gender"/> -->
+
+    <!-- Row 1 Column 1 - Weight !-->
+    <NumberPicker
+        android:id="@+id/np_weight"
+        style="@style/Numberpicker"
+        android:layout_marginEnd="@dimen/spacing_between_elements"
+        android:layout_marginRight="@dimen/spacing_between_elements"
+        app:layout_constraintEnd_toStartOf="@id/div_r1_c1"
+        app:layout_constraintTop_toTopOf="@id/np_height" />
+
+    <TextView
+        android:id="@+id/tv_weight"
+        style="@style/TextLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/weight_label"
+        app:layout_constraintEnd_toEndOf="@id/np_weight"
+        app:layout_constraintStart_toStartOf="@id/np_weight"
+        app:layout_constraintTop_toBottomOf="@id/np_weight" />
+
+    <TextView
+        android:id="@+id/tv_weight_unit"
+        style="@style/TextLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/tv_weight"
+        app:layout_constraintStart_toStartOf="@id/tv_weight"
+        app:layout_constraintTop_toBottomOf="@id/tv_weight" />
+
+    <View
+        android:id="@+id/div_r1_c1"
+        style="@style/Divider"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_weight_unit"
+        app:layout_constraintEnd_toStartOf="@id/np_height"
+        app:layout_constraintTop_toTopOf="@id/np_weight" />
+
+    <!-- Row 1 Column 2 - Height !-->
+
+    <NumberPicker
+        android:id="@+id/np_height"
+        style="@style/Numberpicker"
+        app:layout_constraintBottom_toTopOf="@id/tv_tdee_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rg_gender" />
+
+    <TextView
+        android:id="@+id/tv_height"
+        style="@style/TextLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/height_label"
+        app:layout_constraintEnd_toEndOf="@id/np_height"
+        app:layout_constraintStart_toStartOf="@id/np_height"
+        app:layout_constraintTop_toBottomOf="@id/np_height" />
+
+    <View
+        android:id="@+id/div_r1_c2"
+        style="@style/Divider"
+        android:layout_marginStart="@dimen/spacing_between_elements"
+        android:layout_marginLeft="@dimen/spacing_between_elements"
+        app:layout_constraintBottom_toBottomOf="@id/tv_height"
+        app:layout_constraintStart_toEndOf="@id/np_height"
+        app:layout_constraintTop_toTopOf="@id/np_height" />
+
+    <!-- Row 1 Column 3 - Age !-->
+
+    <NumberPicker
+        android:id="@+id/np_age"
+        style="@style/Numberpicker"
+        android:layout_marginStart="@dimen/spacing_between_elements"
+        android:layout_marginLeft="@dimen/spacing_between_elements"
+        app:layout_constraintStart_toEndOf="@id/div_r1_c2"
+        app:layout_constraintTop_toTopOf="@id/np_height" />
+
+    <TextView
+        android:id="@+id/tv_age"
+        style="@style/TextLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/age_label"
+        app:layout_constraintEnd_toEndOf="@id/np_age"
+        app:layout_constraintStart_toStartOf="@id/np_age"
+        app:layout_constraintTop_toBottomOf="@id/np_age" />
+
+    <!-- Calculated TDEE result !-->
+    <!-- Put both Textviews in a LinearLayout and assign background to layout -->
+    <TextView
+        android:id="@+id/tv_tdee_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tdee_background"
+        android:gravity="center"
+        android:text="@string/empty_result_field"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="64sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_bmr_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/np_height" />
+
+    <TextView
+        android:id="@+id/tv_tdee"
+        style="@style/TextLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tdee"
+        app:layout_constraintEnd_toEndOf="@id/tv_tdee_result"
+        app:layout_constraintStart_toStartOf="@id/tv_tdee_result"
+        app:layout_constraintTop_toBottomOf="@id/tv_tdee_result" />
+
+    <!-- Row 2 Column 1 - BMI (calculated)!-->
+
+    <TextView
+        android:id="@+id/tv_bmi_result"
+        style="@style/TextResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_between_elements"
+        android:layout_marginRight="@dimen/spacing_between_elements"
+        android:text="@string/empty_result_field"
+        app:layout_constraintEnd_toStartOf="@id/div_r2_c1"
+        app:layout_constraintTop_toTopOf="@id/tv_bmr_result" />
+
+    <TextView
+        android:id="@+id/tv_bmi"
+        style="@style/TextLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/body_mass_index_abr"
+        app:layout_constraintEnd_toEndOf="@id/tv_bmi_result"
+        app:layout_constraintStart_toStartOf="@id/tv_bmi_result"
+        app:layout_constraintTop_toBottomOf="@id/tv_bmi_result" />
+
+    <View
+        android:id="@+id/div_r2_c1"
+        style="@style/Divider"
+        app:layout_constraintBottom_toBottomOf="@id/tv_bmr"
+        app:layout_constraintEnd_toStartOf="@id/tv_bmr_result"
+        app:layout_constraintTop_toTopOf="@id/tv_bmr_result" />
+
+    <!-- Row 2 Column 2 - BMR (calculated)!-->
+
+    <TextView
+        android:id="@+id/tv_bmr_result"
+        style="@style/TextResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_result_field"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/tv_tdee_result" />
+
+    <TextView
+        android:id="@+id/tv_bmr"
+        style="@style/TextLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/basal_metabolic_rate_abr"
+        app:layout_constraintEnd_toEndOf="@id/tv_bmr_result"
+        app:layout_constraintStart_toStartOf="@id/tv_bmr_result"
+        app:layout_constraintTop_toBottomOf="@id/tv_bmr_result" />
+
+    <View
+        android:id="@+id/div_r2_c2"
+        style="@style/Divider"
+        android:layout_marginStart="@dimen/spacing_between_elements"
+        android:layout_marginLeft="@dimen/spacing_between_elements"
+        app:layout_constraintBottom_toBottomOf="@id/tv_bmr"
+        app:layout_constraintStart_toEndOf="@id/tv_bmr_result"
+        app:layout_constraintTop_toTopOf="@id/tv_bmr_result" />
+
+    <!-- Row 2 Column 3 - PAL (userinput)!-->
+
+    <EditText
+        android:id="@+id/et_pal_input"
+        style="@style/TextResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_between_elements"
+        android:layout_marginLeft="@dimen/spacing_between_elements"
+        android:inputType="numberDecimal"
+        android:text="1.4"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_bmr_result"
+        app:layout_constraintStart_toEndOf="@id/div_r2_c2" />
+
+    <TextView
+        android:id="@+id/tv_pal"
+        style="@style/TextLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/physical_activity_level_abr"
+        app:layout_constraintEnd_toEndOf="@id/et_pal_input"
+        app:layout_constraintStart_toStartOf="@id/et_pal_input"
+        app:layout_constraintTop_toBottomOf="@id/et_pal_input" />
+
+    <!-- Element für PAL-ListView Auswahl mit Dialog
+        <EditText
+            android:id="@+id/et_pal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="none"
+            android:onClick="showPalList"
+            android:text="@string/pal_edittext_text"
+            app:layout_constraintStart_toEndOf="@id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@id/tv_pal" /> -->
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
