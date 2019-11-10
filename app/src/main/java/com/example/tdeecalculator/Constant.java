@@ -8,6 +8,11 @@ import java.lang.annotation.RetentionPolicy;
 // https://stackoverflow.com/questions/35625247/android-is-it-ok-to-put-intdef-values-inside-interface
 
 public class Constant {
+
+    // United States, Myanmar and Liberia you the imperial measurement system
+    // This constant holds the ISO3166-1 code for preference purposes
+    public static final String[] COUNTRIES_WITH_IMPERIAL_MEASUREMENT = {"US", "MM", "LR"};
+
     // Data type definition for gender
     public static final int GENDER_FEMALE = 0;
     public static final int GENDER_MALE = 1;

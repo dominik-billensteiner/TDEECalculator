@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
-public class Person {
+public class EnergyReqCalc {
     private static final double LB_TO_KG_CONVERSION_VALUE = 2.2046;
 
     private @Constant.EnergyUnit
@@ -31,7 +31,7 @@ public class Person {
     public double weight;
 
     // Default Constructor
-    public Person() {
+    public EnergyReqCalc() {
         age = 0;
         weight = 0;
         height = 0;
@@ -42,7 +42,7 @@ public class Person {
     }
 
     // Constructor
-    public Person(int age, double weight, double height,
+    public EnergyReqCalc(int age, double weight, double height,
                   @Constant.Gender int gender,
                   @Constant.MeasurementType int measurementType,
                   @Constant.EnergyUnit int energyUnit,
@@ -107,13 +107,27 @@ public class Person {
         // Check if unit conversion for energy is needed and return given value in correct unit
         if ((energyUnit == Constant.UNIT_KCAL) &&  (formulaEnergyUnit == Constant.UNIT_MJ)){
             // Conversion from MJ to kcal
-            bmr = (bmr * 1000) * 0.239;
+            bmr = toKcal(bmr);
         }
         else if ((energyUnit == Constant.UNIT_MJ) &&  (formulaEnergyUnit == Constant.UNIT_KCAL)) {
             // Conversion from kcal to MJ
-            bmr = bmr / 238.845896;
+            bmr = toMj(bmr);
         }
         tdee = bmr * pal;
+    }
+
+    /*
+     * Converts given value from MJ to kcal
+     */
+    public Double toKcal(double value){
+        return (value * 1000) * 0.239;
+    }
+
+    /*
+     * Converts given value from kcal to MJ
+     */
+    public Double toMj(double value) {
+        return (value / 238.845896);
     }
 
     /* Calculates basal metabolic rate (BMR) with the formula from Harris and Benedict et al (1919).
@@ -236,7 +250,7 @@ public class Person {
      */
     private Double calculateBmrWithMueller(Double fWeight) {
         Double fBmr = 0.0;
-         // Calculation of BMR by BMI classes
+        // Calculation of BMR by BMI classes
         if (bmi <= 18.5) {
             fBmr = (0.07122 * fWeight - 0.02149 * age + 0.82 * gender + 0.731);
         } else if ((bmi > 18.5) && (bmi <= 25)) {

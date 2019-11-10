@@ -5,7 +5,7 @@
     <PreferenceCategory android:title="Calculation">
         <ListPreference
             android:id="@+id/formula_settings"
-            android:defaultValue="0"
+            android:defaultValue="@string/default_formula"
             android:dialogTitle="@string/title_formula"
             android:entries="@array/pref_formula_entries"
             android:entryValues="@array/pref_formula_values"
@@ -17,7 +17,7 @@
     <PreferenceCategory android:title="Units">
         <ListPreference
             android:id="@+id/energy_unit_settings"
-            android:defaultValue="0"
+            android:defaultValue="@string/default_energy_unit"
             android:dialogTitle="@string/title_energy_unit"
             android:entries="@array/pref_energy_unit_entries"
             android:entryValues="@array/pref_energy_unit_values"
@@ -27,7 +27,7 @@
 
         <ListPreference
             android:id="@+id/measurement_settings"
-            android:defaultValue="0"
+            android:defaultValue="@string/default_measurement"
             android:dialogTitle="@string/title_measurement"
             android:entries="@array/pref_measurement_entries"
             android:entryValues="@array/pref_measurement_values"
@@ -46,7 +46,7 @@
 
         <ListPreference
             android:id="@+id/gender_settings"
-            android:defaultValue="0"
+            android:defaultValue="default_gender"
             android:dialogTitle="@string/title_gender"
             android:entries="@array/pref_gender_entries"
             android:entryValues="@array/pref_gender_values"
@@ -56,24 +56,49 @@
 
         <EditTextPreference
             android:id="@+id/age_settings"
-            android:defaultValue="3@string/default_age0"
+            android:defaultValue="@string/default_age"
             android:key="@string/key_age"
             android:title="@string/title_age"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
-            android:id="@+id/weight_settings"
-            android:defaultValue="@string/default_weight"
-            android:key="@string/key_weight"
-            android:title="@string/title_weight"
+            android:id="@+id/weight_metric_settings"
+            android:defaultValue="@string/default_weight_metric"
+            android:key="@string/key_weight_metric"
+            android:title="@string/title_weight_metric"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
-            android:id="@+id/height_settings"
-            android:defaultValue="@string/default_height"
-            android:key="@string/key_height"
-            android:title="@string/title_height"
+            android:id="@+id/weight_imperial_settings"
+            android:defaultValue="@string/default_weight_imperial"
+            android:key="@string/key_weight_imperial"
+            android:title="@string/title_weight_imperial"
+            app:isPreferenceVisible="false"
             app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:id="@+id/height_metric_settings"
+            android:key="@string/key_height_metric"
+            android:defaultValue="@string/default_height_metric"
+            android:title="@string/title_height_metric"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:id="@+id/height_imperial_ft_settings"
+            android:key="@string/key_height_imperial_ft"
+            android:defaultValue="@string/default_height_imperial_ft"
+            android:title="@string/title_height_imperial_ft"
+            app:isPreferenceVisible="false"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:id="@+id/height_imperial_in_settings"
+            android:key="@string/key_height_imperial_in"
+            android:defaultValue="@string/default_height_imperial_in"
+            android:title="@string/title_height_imperial_in"
+            app:isPreferenceVisible="false"
+            app:useSimpleSummaryProvider="true" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

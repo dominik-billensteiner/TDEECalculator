@@ -100,12 +100,21 @@
         app:layout_constraintStart_toStartOf="@id/np_height"
         app:layout_constraintTop_toBottomOf="@id/np_height" />
 
+    <TextView
+        android:id="@+id/tv_height_unit"
+        style="@style/TextLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/tv_height"
+        app:layout_constraintStart_toStartOf="@id/tv_height"
+        app:layout_constraintTop_toBottomOf="@id/tv_height" />
+
     <View
         android:id="@+id/div_r1_c2"
         style="@style/Divider"
         android:layout_marginStart="@dimen/spacing_between_elements"
         android:layout_marginLeft="@dimen/spacing_between_elements"
-        app:layout_constraintBottom_toBottomOf="@id/tv_height"
+        app:layout_constraintBottom_toBottomOf="@id/tv_height_unit"
         app:layout_constraintStart_toEndOf="@id/np_height"
         app:layout_constraintTop_toTopOf="@id/np_height" />
 
