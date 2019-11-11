@@ -98,13 +98,11 @@ public class TDEECalculator extends AppCompatActivity {
             if (erCalc.measurementType != newerCalc.measurementType) {
                 erCalc.measurementType = newerCalc.measurementType;
                 if (erCalc.measurementType == Constant.MEASUREMENT_METRIC) {
-                    setWeightHeightInputMetric();
                     // call method to reconfigure numberpickers to metric
-                    // no recalculation needed
+                    setWeightHeightInputMetric();
                 }
                 else if (erCalc.measurementType == Constant.MEASUREMENT_IMPERIAL) {
                     // call method to reconfigure numberpickers to imperial
-                    // no recalculation needed
                     setWeightHeightInputImperial();
                 }
             }
@@ -189,6 +187,8 @@ public class TDEECalculator extends AppCompatActivity {
      */
     private void setWeightHeightInputMetric() {
         // configure weight inputs
+        npWeight.setDisplayedValues(null);
+        npWeight.setFormatter(null);
         npWeight.setMaxValue(Integer.parseInt(getString(R.string.weight_max_value_metric)));
         npWeight.setMinValue(Integer.parseInt(getString(R.string.weight_min_value_metric)));
         npWeight.setValue((int)Math.round(erCalc.weight));
@@ -196,6 +196,8 @@ public class TDEECalculator extends AppCompatActivity {
         tvWeightUnit.setText(getString(R.string.unit_metric_kg));
 
         // configure height inputs
+        npHeight.setDisplayedValues(null);
+        npHeight.setFormatter(null);
         npHeight.setMaxValue(Integer.parseInt(getString(R.string.height_max_value_metric)));
         npHeight.setMinValue(Integer.parseInt(getString(R.string.height_min_value_metric)));
         npHeight.setValue((int)Math.round(erCalc.height));
@@ -209,21 +211,29 @@ public class TDEECalculator extends AppCompatActivity {
      */
     private void setWeightHeightInputImperial() {
         // configure weight inputs
+        npWeight.setDisplayedValues(null);
+        npWeight.setFormatter(null);
         npWeight.setMaxValue(Integer.parseInt(getString(R.string.weight_max_value_imperial)));
         npWeight.setMinValue(Integer.parseInt(getString(R.string.weight_min_value_imperial)));
         npWeight.setValue((int)Math.round(erCalc.weight));
+        tvWeightUnit.setText(getString(R.string.unit_imperial_lb));
 
         // configure height inputs
-        final ArrayList alHeight = getImperialHeightArray();
+        npHeight.setDisplayedValues(null);
+        npHeight.setMaxValue(1299);
+        npHeight.setMinValue(0);
+
+        npHeight.setFormatter(null);
+        ImperialHeight iHeight = new ImperialHeight(erCalc.height);
         // create array for height selection in ft and in
-        npHeight.setMaxValue(alHeight.size()-1);
+        final ArrayList alHeight = iHeight.getImperialHeightArray();
         npHeight.setFormatter(new NumberPicker.Formatter() {
                                   @Override
                                   public String format (int value) {
                                       return alHeight.get(value).toString();
                                   }
         });
-
+        tvHeightUnit.setText(getString(R.string.unit_imperial_inches));
     }
 
     /*
@@ -381,24 +391,6 @@ public class TDEECalculator extends AppCompatActivity {
         );
 
         startActivity(Intent.createChooser(emailIntent, getString(R.string.title_intent_email)));
-    }
-
-    // Creates a string-array of imperial height values (format: ft"in)
-    public ArrayList<String> getImperialHeightArray() {
-        ArrayList aL = new ArrayList();
-        aL.add("5\"2");
-        aL.add("5\"3");
-        aL.add("5\"4");
-        aL.add("5\"5");
-        aL.add("5\"6");
-       /* int pos = 0;
-        for (int feet = 0; feet <= 12; feet++) {
-            for (int inches = 0; inches < 12; inches++) {
-                aL.add(String.format("%d\"%d",feet,inches));
-            }
-        }
-        aL.trimToSize();*/
-        return aL;
     }
 
     // Displays Toast

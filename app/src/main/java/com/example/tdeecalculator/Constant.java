@@ -13,6 +13,12 @@ public class Constant {
     // This constant holds the ISO3166-1 code for preference purposes
     public static final String[] COUNTRIES_WITH_IMPERIAL_MEASUREMENT = {"US", "MM", "LR"};
 
+    // Conversion value to calculate cm to inches and visa versa
+    public static final Double INCH_IN_CM = 2.54;
+
+    // Conversion value to calculate cm to feet and visa versa
+    public static final Double FEET_IN_CM = 30.48;
+
     // Data type definition for gender
     public static final int GENDER_FEMALE = 0;
     public static final int GENDER_MALE = 1;

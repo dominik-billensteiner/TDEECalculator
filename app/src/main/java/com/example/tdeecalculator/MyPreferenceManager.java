@@ -9,6 +9,7 @@ import androidx.preference.PreferenceManager;
 public class MyPreferenceManager {
     private SharedPreferences sp;
     private Context context;
+    private EnergyReqCalc erCalc;
 
     /*
      * Default Constructor
@@ -16,6 +17,7 @@ public class MyPreferenceManager {
     public MyPreferenceManager() {
         sp = null;
         context = null;
+        erCalc = null;
     }
 
     /*
@@ -24,16 +26,16 @@ public class MyPreferenceManager {
     public MyPreferenceManager(Context context) {
         this.context = context;
         this.sp = PreferenceManager.getDefaultSharedPreferences(context);
+        erCalc = new EnergyReqCalc();
     }
 
     /*
      * Gets all preferences from the settingsmenu
      */
     public EnergyReqCalc getPreferencesWithDefaultValues() {
-        EnergyReqCalc erCalc = new EnergyReqCalc();
         erCalc.measurementType = getPrefMeasurementType();
         erCalc.weight = getPrefWeight(erCalc.measurementType);
-        erCalc.height = getPrefHeight();
+        erCalc.height = getPrefHeight(erCalc.measurementType);
         erCalc.age = getPrefAge();
         erCalc.gender = getPrefGender();
         erCalc.energyUnit = getPrefEnergyUnit();
@@ -45,15 +47,15 @@ public class MyPreferenceManager {
     /*
      * Returns preferences for measurement system, energy unit and bmr formula
      */
-    public EnergyReqCalc getPreferencesNoDefaultValues(EnergyReqCalc erCalc) {
-        erCalc.measurementType = getPrefMeasurementType();
-        erCalc.energyUnit = getPrefEnergyUnit();
-        erCalc.bmrFormula = getPrefBmrFormula();
-        return erCalc;
+    public EnergyReqCalc getPreferencesNoDefaultValues(EnergyReqCalc givenErc) {
+        givenErc.measurementType = getPrefMeasurementType();
+        givenErc.energyUnit = getPrefEnergyUnit();
+        givenErc.bmrFormula = getPrefBmrFormula();
+        return givenErc;
     }
 
     /*
-     * Returns measurement system saved in preferences
+     * Returns measurement system (int) saved in preferences
      */
     public @Constant.MeasurementType int getPrefMeasurementType() {
         return Integer.parseInt(sp.getString(
@@ -61,78 +63,32 @@ public class MyPreferenceManager {
                 context.getString(R.string.default_measurement))
         );
     }
-        /* NOT NECCESARY TO CHECK????
-         Check if app is called the first time/or preferences are not set
-        if (mPref == "") {
-            // Firstrun of the app
-            String locale = context.getResources().getConfiguration().locale.getCountry();
-            SharedPreferences.Editor editor =  sp.edit();
-            // Check if the country set in the phones current preferences uses imperial system
-            if (checkLocaleForImperialMeasurement(locale)) {
-                // Set default weight and default height to imperial system
-                editor.putInt(context.getString(R.string.key_weight),
-                        Integer.parseInt(context.getString(R.string.default_weight_imperial)));
-                editor.putInt(context.getString(R.string.key_height),
-                        Integer.parseInt(context.getString(R.string.default_height)));
-                editor.commit();
-                return Constant.MEASUREMENT_IMPERIAL;
-            } else {
-                // set dfeault weight and default height to metric system
-                editor.putInt(context.getString(R.string.key_weight),
-                        Integer.parseInt(context.getString(R.string.default_weight_metric)));
-                editor.putString(context.getString(R.string.key_height),
-                        context.getString(R.string.default_height));
-                editor.commit();*/
 
     /*
-     * Returns default weight saved in preferences
+     * Returns default weight (double) saved in preferences
      */
     private Double getPrefWeight(@Constant.MeasurementType int measurementType) {
         if (measurementType == Constant.MEASUREMENT_IMPERIAL) {
             return Double.parseDouble(sp.getString(context.getString(R.string.key_weight_imperial),
                     context.getString(R.string.default_weight_imperial)));
-        }
-        else return Double.parseDouble(sp.getString(context.getString(R.string.key_weight_metric),
+        } else return Double.parseDouble(sp.getString(context.getString(R.string.key_weight_metric),
                 context.getString(R.string.default_weight_metric)));
-
-        /* FOR BUGGY VERSION WITH CANNOT CAST INT TO STRING
-        if (measurementType == Constant.MEASUREMENT_IMPERIAL) {
-            return new Double(sp.getInt(context.getString(R.string.key_weight),
-                            Integer.parseInt(context.getString(R.string.default_weight_imperial))));
-        }
-        else return new Double(sp.getInt(context.getString(R.string.key_weight),
-                            Integer.parseInt(context.getString(R.string.default_weight_metric)))
-        );*/
     }
-            /* Working block
-            int value = sp.getInt(context.getString(R.string.key_weight),
-                    Integer.parseInt(context.getString(R.string.default_weight_metric)));
-            Double dValue = Double.parseDouble(String.format("%d", value));
-            return dValue; */
-            /* Remnants of Integer cannot be cast to java.lang.string
-                      /*
-            Double value = sp.getString(context.getString("weight_settings",
-                    context.getString(R.string.default_weight_metric));*/
-                    /*
-            int value = sp.getInt(context.getString(R.string.key_weight),
-                    Integer.parseInt(context.getString(R.string.default_weight_metric)));
-            Double dValue = Double.parseDouble(String.format("%d", value));
-            return dValue;
-            /*
-            return Double.parseDouble(
-                    sp.getString(context.getResources().getString(R.string.key_weight).toString(),
-                            (context.getResources().getString(R.string.default_weight_metric)).toString()));*
-             */
-
 
     /*
      * Returns default height saved in preferences
      */
-    private Double getPrefHeight() {
-        return 170.0;
-        /*return new Double(sp.getInt(context.getString(R.string.key_height),
-                        Integer.parseInt(context.getString(R.string.default_height)))
-                );*/
+    private Double getPrefHeight(@Constant.MeasurementType int measurementType) {
+        if (measurementType == Constant.MEASUREMENT_IMPERIAL) {
+            Double ft = Double.parseDouble(sp.getString(context.getString(R.string.key_height_imperial_ft),
+                    context.getString(R.string.default_height_imperial_ft)));
+            Double in = Double.parseDouble(sp.getString(context.getString(R.string.key_height_imperial_in),
+                    context.getString(R.string.default_height_imperial_in)));
+            ImperialHeight iHeight = new ImperialHeight(ft, in);
+            return iHeight.getMetricHeight();
+        }
+        else return Double.parseDouble(sp.getString(context.getString(R.string.key_weight_metric),
+                context.getString(R.string.default_weight_metric)));
     }
 
     /*
