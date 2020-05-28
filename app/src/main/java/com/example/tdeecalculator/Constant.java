@@ -19,6 +19,9 @@ public class Constant {
     // Conversion value to calculate cm to feet and visa versa
     public static final Double FEET_IN_CM = 30.48;
 
+    // Conversion value to calculate pund to kg and visa versa
+    public static final Double POUND_TO_KG = 2.2046;
+
     // Data type definition for gender
     public static final int GENDER_FEMALE = 0;
     public static final int GENDER_MALE = 1;

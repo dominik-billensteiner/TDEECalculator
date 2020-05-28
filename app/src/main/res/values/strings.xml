@@ -50,7 +50,8 @@
     <string name="unit_metric_cm">(cm)</string>
     <string name="unit_metric_kg">(kg)</string>
     <string name="unit_imperial_lb">(lbs)</string>
-    <string name="unit_imperial_inches">(ft\"in)</string>
+    <string name="unit_imperial_feet">(ft)</string>
+    <string name="unit_imperial_inches">(in)</string>
     <string name="default_age">25</string>
     <string name="default_weight_metric">70</string>
     <string name="default_weight_imperial">140</string>

@@ -20,10 +20,6 @@ import androidx.appcompat.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.Locale;
 
-// TEST GITHUB COMMIT AND PUBLISH
-
-// Todo: Change Widget variable names to weight_label, weight_value, weight_unit usw.
-
 // Extending AppCompatActivity
 
 public class TDEECalculator extends AppCompatActivity {
@@ -40,6 +36,7 @@ public class TDEECalculator extends AppCompatActivity {
     private TextView tvHeightUnit;
     private NumberPicker npWeight;
     private NumberPicker npHeight;
+    private NumberPicker npHeightInches;
     private NumberPicker npAge;
     private RadioButton rbMale;
     private RadioButton rbFemale;
@@ -152,6 +149,7 @@ public class TDEECalculator extends AppCompatActivity {
         rbFemale = (RadioButton) findViewById((R.id.rb_female));
         npWeight = (NumberPicker) findViewById(R.id.np_weight);
         npHeight = (NumberPicker) findViewById(R.id.np_height);
+        npHeightInches = (NumberPicker) findViewById(R.id.np_height_inches);
         npAge = (NumberPicker) findViewById(R.id.np_age);
 
         // Load Settings from DefaultSharedPreferences
@@ -196,6 +194,7 @@ public class TDEECalculator extends AppCompatActivity {
         tvWeightUnit.setText(getString(R.string.unit_metric_kg));
 
         // configure height inputs
+        npHeightInches.setVisibility(View.INVISIBLE);
         npHeight.setDisplayedValues(null);
         npHeight.setFormatter(null);
         npHeight.setMaxValue(Integer.parseInt(getString(R.string.height_max_value_metric)));
@@ -218,22 +217,30 @@ public class TDEECalculator extends AppCompatActivity {
         npWeight.setValue((int)Math.round(erCalc.weight));
         tvWeightUnit.setText(getString(R.string.unit_imperial_lb));
 
-        // configure height inputs
+        // setup feet numberpicker
         npHeight.setDisplayedValues(null);
-        npHeight.setMaxValue(1299);
+        npHeight.setMaxValue(12);
         npHeight.setMinValue(0);
-
         npHeight.setFormatter(null);
         ImperialHeight iHeight = new ImperialHeight(erCalc.height);
-        // create array for height selection in ft and in
-        final ArrayList alHeight = iHeight.getImperialHeightArray();
-        npHeight.setFormatter(new NumberPicker.Formatter() {
-                                  @Override
-                                  public String format (int value) {
-                                      return alHeight.get(value).toString();
-                                  }
+        npHeight.setValue((int)iHeight.feet);
+        tvHeightUnit.setText(getString(R.string.unit_imperial_feet));
+
+        // setup inches numberpicker
+        npHeightInches.setVisibility(View.VISIBLE);
+        npHeightInches.setDisplayedValues(null);
+        npHeightInches.setMaxValue(119);
+        npHeightInches.setMinValue(0);
+        npHeightInches.setFormatter(null);
+        // create array for height selection in inches
+        final ArrayList alHeightInches = iHeight.getHeightInchesArray();
+        npHeightInches.setFormatter(new NumberPicker.Formatter() {
+            @Override
+            public String format (int value) {
+                return alHeightInches.get(value).toString();
+            }
         });
-        tvHeightUnit.setText(getString(R.string.unit_imperial_inches));
+      //  tvHeightUnit.setText(getString(R.string.unit_imperial_feet));
     }
 
     /*
@@ -254,11 +261,8 @@ public class TDEECalculator extends AppCompatActivity {
         // Ensure that preference changes in the current app session are used for the calculation
         prefManager.getPreferencesNoDefaultValues(erCalc);
 
-        // Get user input
-        erCalc.age = npAge.getValue();
-        erCalc.weight = npWeight.getValue();
-        erCalc.height = npHeight.getValue();
-        erCalc.pal = Double.parseDouble(etPal.getText().toString());
+        // Get user input and assign into to erCalc object
+        getUserInput();
 
         // Calculate and display body mass index
         erCalc.calculateBmi();
@@ -274,6 +278,24 @@ public class TDEECalculator extends AppCompatActivity {
         erCalc.calculateTdee();
         displayResults();
         calculationDone = true;
+    }
+
+    /* Loads user input in to ercalc object */
+    private void getUserInput() {
+        erCalc.age = npAge.getValue();
+        erCalc.pal = Double.parseDouble(etPal.getText().toString());
+
+        if (erCalc.measurementType == Constant.MEASUREMENT_METRIC) {
+            erCalc.weight = npWeight.getValue();
+            erCalc.height = npHeight.getValue();
+        } else if (erCalc.measurementType == Constant.MEASUREMENT_IMPERIAL) {
+            double feet = new Double (npHeight.getValue());
+            double inches = new Double (npHeightInches.getValue());
+            ImperialHeight iHeight = new ImperialHeight(feet, inches);
+            erCalc.height = iHeight.getMetricHeight();
+            double pounds = new Double (npWeight.getValue());
+            erCalc.weight = erCalc.toKg(pounds);
+        }
     }
 
     /*

@@ -9,16 +9,25 @@
     tools:context=".TDEECalculator"
     tools:showIn="@layout/activity_main">
 
-    <!-- Centered input elements !-->
+    <!-- Widgets -->
+    <!-- Row 0 Column 1 - Gender -->
+    <TextView
+        android:id="@+id/tv_gender"
+        style="@style/TextLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gender_label"
+        app:layout_constraintBottom_toTopOf="@id/rg_gender"
+        app:layout_constraintTop_toTopOf="@id/np_age"
+        app:layout_constraintStart_toStartOf="@id/rg_gender"/>
+
     <RadioGroup
         android:id="@+id/rg_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/np_height"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@id/div_r0_c1"
+        app:layout_constraintTop_toBottomOf="@id/tv_gender">
 
         <RadioButton
             android:id="@+id/rb_female"
@@ -34,17 +43,43 @@
 
     </RadioGroup>
 
-    <!--
+    <View
+        android:id="@+id/div_r0_c1"
+        style="@style/Divider"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/rg_gender"
+        app:layout_constraintEnd_toStartOf="@id/np_age"
+        app:layout_constraintTop_toTopOf="@id/tv_gender" />
+
+    <!-- Row 0 Column 2 -->
+
+    <NumberPicker
+        android:id="@+id/np_age"
+        style="@style/Numberpicker"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/np_weight" />
+
     <TextView
-        android:id="@+id/tv_gender"
-        style="@style/PrimaryInfoLabels"
+        android:id="@+id/tv_age"
+        style="@style/TextLabels"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/gender_label"
-        app:layout_constraintEnd_toEndOf="@id/rg_gender"
-        app:layout_constraintStart_toStartOf="@id/rg_gender"
-        app:layout_constraintTop_toBottomOf="@id/rg_gender"/> -->
+        android:text="@string/age_label"
+        app:layout_constraintEnd_toEndOf="@id/np_age"
+        app:layout_constraintStart_toStartOf="@id/np_age"
+        app:layout_constraintTop_toBottomOf="@id/np_age"/>
 
+    <!-- Row 0 Column 3 -->
+
+    <TextView
+        android:id="@+id/placeholder"
+        style="@style/Numberpicker"
+        app:layout_constraintStart_toEndOf="@id/np_age"
+        app:layout_constraintTop_toTopOf="@id/np_age" />
+
+    <!-- ROWCHANGE -->
     <!-- Row 1 Column 1 - Weight !-->
     <NumberPicker
         android:id="@+id/np_weight"
@@ -76,7 +111,7 @@
     <View
         android:id="@+id/div_r1_c1"
         style="@style/Divider"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_weight_unit"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_weight"
         app:layout_constraintEnd_toStartOf="@id/np_height"
         app:layout_constraintTop_toTopOf="@id/np_weight" />
 
@@ -88,7 +123,7 @@
         app:layout_constraintBottom_toTopOf="@id/tv_tdee_result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rg_gender" />
+        app:layout_constraintTop_toBottomOf="@id/np_age" />
 
     <TextView
         android:id="@+id/tv_height"
@@ -114,29 +149,31 @@
         style="@style/Divider"
         android:layout_marginStart="@dimen/spacing_between_elements"
         android:layout_marginLeft="@dimen/spacing_between_elements"
-        app:layout_constraintBottom_toBottomOf="@id/tv_height_unit"
+        app:layout_constraintBottom_toBottomOf="@id/tv_height"
         app:layout_constraintStart_toEndOf="@id/np_height"
         app:layout_constraintTop_toTopOf="@id/np_height" />
 
     <!-- Row 1 Column 3 - Age !-->
 
     <NumberPicker
-        android:id="@+id/np_age"
+        android:id="@+id/np_height_inches"
         style="@style/Numberpicker"
         android:layout_marginStart="@dimen/spacing_between_elements"
         android:layout_marginLeft="@dimen/spacing_between_elements"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@id/div_r1_c2"
         app:layout_constraintTop_toTopOf="@id/np_height" />
 
     <TextView
-        android:id="@+id/tv_age"
+        android:id="@+id/tv_height_inches"
         style="@style/TextLabels"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/age_label"
-        app:layout_constraintEnd_toEndOf="@id/np_age"
-        app:layout_constraintStart_toStartOf="@id/np_age"
-        app:layout_constraintTop_toBottomOf="@id/np_age" />
+        android:text="@string/unit_imperial_inches"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@id/np_height_inches"
+        app:layout_constraintStart_toStartOf="@id/np_height_inches"
+        app:layout_constraintTop_toBottomOf="@id/np_height_inches" />
 
     <!-- Calculated TDEE result !-->
     <!-- Put both Textviews in a LinearLayout and assign background to layout -->

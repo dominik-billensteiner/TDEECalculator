@@ -61,4 +61,29 @@ public class ImperialHeight {
         }
         return aL;
     }
+
+    /*
+     * Returns a string-array of imperial feet values
+     *
+    public ArrayList<String> getHeightFeetArray() {
+        ArrayList aL = new ArrayList();
+        for (int feet = 0; feet <= 12; feet++) {
+            aL.add(Integer.toString(feet));
+        }
+        return aL;
+    }/
+
+    /*
+     * Returns a string-array of imperial inches values
+     */
+    public ArrayList<String> getHeightInchesArray() {
+        ArrayList aL = new ArrayList();
+        Double dInches;
+        for (int in = 0; in <= 120; in++) {
+            dInches = new Double (in);
+            dInches = dInches / 10;
+            aL.add(String.format("%1.1f",dInches));
+        }
+        return aL;
+    }
 }

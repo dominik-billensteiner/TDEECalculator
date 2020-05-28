@@ -1,0 +1,27 @@
+Changelog TDEE Developer
+
+05.11.2019
+- Added country by locale check for measurement system, when no prefs are set
+- Added widget functionality for metric and imperial system
+
+08.11.2019
+- Partial Code Review of TDEECalculator, Person and MyPreferenceManager class
+- Fixed bug with SharedPreferences 'cannot cast Integer to String' by removing the code part, which changed SharedPreferenches manuelly with sp.Edit() and sp.Commit()
+- Added code logic to react upon changed Settings: Change settings of energy unit completed
+
+09.11.2019
+- Changed class name of Person to EnergyReqCalc
+- Changed variable name of person to erCalc in all classes
+- Added variable boolean culculationDone to prevent autocalculation when bmr formula or energy unit is changed in settings
+- Completed code for onResume, when resuming from Settings
+- Working on functionality, input widgets and preference screen for imperial measurement
+
+10.11.2019
+- Fixed onPreferenceChangeListener in MainSettings class, to react to changes of measurement system
+- Added method getAppContext in TDEECalculator class, to return Context of the app globally
+- Create new EditTextPrefence items for weight and height (2, feet and inches) imperial measurement system and added code to setVisible true or false depending on measurement system selection
+- Added code to change preference screen weight and height according to measurement system on preference screen startup
+
+11.11.2019
+- Added Class ImperialHeight with Conversition methods and fixed createImperialHeightArray
+- Added code for imperial measurement system application usage
